@@ -1,6 +1,5 @@
 
-
- name: Rspec Test
+name: Rspec Test
 
 on:
   push:
