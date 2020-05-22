@@ -1,53 +1,71 @@
-name: Rspec Test
+name: Greeting from Mona
 
-on:
-  push:
-    branches:
-    - master
+on: push
 
 jobs:
-  rspec-test:
-    # コンテナはLinuxベースのオペレｰ手イングシステム内で実行する
+  my-job:
+    name: My Job
     runs-on: ubuntu-latest
-    # `container-job`が実行されるDocker Hubイメージ
-    container: ruby:alpine
-
-    services:
-      mysql:
-        image: mysql:5
-
     steps:
-      - uses: actions/checkout@v2
+    - name: Print a greeting
+      env:
+        MY_VAR: Hi there! My name is
+        FIRST_NAME: Mona
+        MIDDLE_NAME: The
+        LAST_NAME: Octocat
+      run: |
+        echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.
 
-      - name:
-        run: |
-          ls
-          ruby --version
-          apk  update
+#  name: Rspec Test
+
+# on:
+#   push:
+#     branches:
+#     - master
+
+# jobs:
+#   rspec-test:
+#     # コンテナはLinuxベースのオペレｰ手イングシステム内で実行する
+#     runs-on: ubuntu-latest
+#     # `container-job`が実行されるDocker Hubイメージ
+#     container: ruby:alpine
+
+#     services:
+#       mysql:
+#         image: mysql:5
+
+#     steps:
+#       - uses: actions/checkout@v2
+
+#       - name:
+#         run: |
+#           ls
+#           ruby --version
+#           apk  update
       
 
 
 
-# on: [push]
+# # on: [push]
 
-# jobs:
-#   test:
-#     name: test
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@master
+# # jobs:
+# #   test:
+# #     name: test
+# #     runs-on: ubuntu-latest
+# #     steps:
+# #     - uses: actions/checkout@master
 
-#     - name: run test
-#       uses: cedrickring/golang-action/go1.13@1.4.1
-#       env:
-#         GO111MODULE: "on"
-#         PROJECT_PATH: "./src"
-#       with:
-#         args: |
-#           go test -coverprofile=cover.out ./...
-#           ls
+# #     - name: run test
+# #       uses: cedrickring/golang-action/go1.13@1.4.1
+# #       env:
+# #         GO111MODULE: "on"
+# #         PROJECT_PATH: "./src"
+# #       with:
+# #         args: |
+# #           go test -coverprofile=cover.out ./...
+# #           ls
 
-#     - uses: codecov/codecov-action@v1
-#       with:
-#         token: ${{ secrets.CODECOV_TOKEN }}
-#         file: ./cover.out
+# #     - uses: codecov/codecov-action@v1
+# #       with:
+# #         token: ${{ secrets.CODECOV_TOKEN }}
+# #         file: ./cover.out
