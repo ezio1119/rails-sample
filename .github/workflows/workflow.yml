@@ -43,6 +43,10 @@ jobs:
       - name: rails db:migrate
         run: rails db:migrate
 
+      - name: run rspec
+        run: bundle exec rspec
+        
+
 
 
 # # on: [push]
