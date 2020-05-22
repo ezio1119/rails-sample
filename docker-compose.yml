@@ -1,0 +1,32 @@
+ 
+version: "3"
+services:
+
+  rails:
+    build: .
+    volumes:
+      - .:/app
+      - bundle-data:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    command: /bin/sh -c "bundle && bundle exec rails db:create && rails db:migrate && rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    tty: true
+    stdin_open: true
+
+  mysql:
+    image: mysql:5
+    command: mysqld --character-set-server=utf8
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "4306:3306"
+    volumes:
+      - "mysql-data:/var/lib/mysql"
+
+volumes:
+  mysql-data:
+    driver: local
+  bundle-data:
+    driver: local
