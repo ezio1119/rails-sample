@@ -11,7 +11,8 @@ jobs:
     # コンテナはLinuxベースのオペレｰ手イングシステム内で実行する
     runs-on: ubuntu-latest
     # `container-job`が実行されるDocker Hubイメージ
-    container: ruby:alpine
+    container:
+      image: ruby:alpine
       env:
         RAILS_ENV: test
 
