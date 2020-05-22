@@ -12,20 +12,27 @@ jobs:
     runs-on: ubuntu-latest
     # `container-job`が実行されるDocker Hubイメージ
     container: ruby:alpine
+      env:
+        RAILS_ENV: test
+
 
     services:
       mysql:
         image: mysql:5
+        env:
+          MYSQL_ROOT_PASSWORD: password
 
     steps:
       - uses: actions/checkout@v2
 
-      - name:
-        run: |
-          ls
-          ruby --version
-          apk  update
+      - name: bundle install
+        run: bundle
+
+      - name: rails db:create
+        run: rails db:create
       
+      - name: rails db:migrate
+        run: rails db:migrate
 
 
 
