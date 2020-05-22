@@ -18,13 +18,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: |
-        ls
-        ruby --version
-        apk  update
+
+      - name:
+        run: |
+          ls
+          ruby --version
+          apk  update
       
 
-      
+
 
 # on: [push]
 
